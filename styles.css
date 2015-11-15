@@ -1,0 +1,17 @@
+.listContainer {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.list {
+    margin: 50px;
+    border: 1px black solid;
+    display: inline-flex;
+    width: 200px;
+    min-height: 500px;
+}
+
+.listTitle {
+    margin-left: auto;
+    margin-right: auto;
+}

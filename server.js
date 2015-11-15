@@ -18,9 +18,9 @@
     var twitter = new Twitter(config);
 
     router.get('/lists', function (req, res) {
-        twitter.getCustomApiCall('/lists/list.json', {screen_name: 'netarrow89'},
+        twitter.getCustomApiCall('/lists/list.json', { screen_name: 'netarrow89' },
             function (error) {
-                res.json(error);
+                res.status(500).send(error);
             },
             function (data) {
                 res.json(data);

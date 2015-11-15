@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html ng-app="dragList">
 <head>
-    <script type="text/javascript" src="angular.js"></script>
+    <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="node_modules/jquery-mousewheel/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="app.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body ng-controller="HomeController as home">
-<h1>
-    <div ng-repeat="list in home.lists">
-        <span>{{list.name}}</span>
+<div>{{home.error}}</div>
+    <div class="listContainer">
+        <div ng-repeat="list in home.lists" class="list">
+            <span class="listTitle">{{list.name}}</span>
+        </div>
     </div>
-</h1>
 </body>
 </html>
 
