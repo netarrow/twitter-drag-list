@@ -9,6 +9,11 @@
 </head>
 <body ng-controller="HomeController as home">
 <div>{{home.error}}</div>
+<div id="users">
+    <ul>
+        <li ng-repeat="user in home.users">{{user.name}}</li>
+    </ul>
+</div>
     <div class="listContainer">
         <div ng-repeat="list in home.lists" class="list">
             <span class="listTitle">{{list.name}}</span>

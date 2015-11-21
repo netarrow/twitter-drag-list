@@ -27,6 +27,16 @@
             })
     });
 
+    router.get('/following', function (req, res) {
+        twitter.getCustomApiCall('/friends/list.json', { screen_name: 'netarrow89', count: 200 },
+            function (error) {
+                res.status(500).send(error);
+            },
+            function (data) {
+                res.json(data);
+            })
+    });
+
     // enable cors
     app.use(function(req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
