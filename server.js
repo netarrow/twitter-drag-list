@@ -27,6 +27,16 @@
             })
     });
 
+    router.get('/members/:listid', function (req, res) {
+        twitter.getCustomApiCall('/lists/members.json', { list_id: req.params['listid']},
+            function (error) {
+                res.status(500).send(error);
+            },
+            function (data) {
+                res.json(data);
+            })
+    });
+
     router.get('/following', function (req, res) {
         twitter.getCustomApiCall('/friends/list.json', { screen_name: 'netarrow89', count: 200 },
             function (error) {
