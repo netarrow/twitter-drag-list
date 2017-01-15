@@ -1,0 +1,23 @@
+.listContainer {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    float: left;
+}
+
+.list {
+    margin: 50px;
+    border: 1px black solid;
+    display: inline-flex;
+    flex-basis: 20%
+}
+
+.listTitle {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#users {
+    float: left;
+    display: inline;
+}
