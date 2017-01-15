@@ -1,10 +1,13 @@
 /// <reference path="typings/index.d.ts"/>
 
-declare var require:any;
+declare var require:(module: string) => any;
 
 import * as express from "express";
+import {TwitterApi} from "./Twitter";
 
 var Twitter = require("twitter-js-client").Twitter;
+
+var listRepository: TwitterApi.Data.ListRepository = new TwitterApi.Data.ListRepository();
 
 var app = express();
 
@@ -21,14 +24,7 @@ var router = express.Router();
  var twitter = new Twitter(config);
 
  router.get('/lists', function (req, res) {
-     twitter.getCustomApiCall('/lists/list.json', { screen_name: 'netarrow89' },
-         function (error) {
-             console.log(error)
-             res.status(500).send(error);
-         },
-         function (data) {
-             res.json(data);
-         })
+     listRepository.GetLists(lists => res.json(lists));
  });
 
  router.get('/members/:listid', function (req, res) {

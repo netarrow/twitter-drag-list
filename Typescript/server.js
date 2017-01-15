@@ -1,7 +1,9 @@
 /// <reference path="typings/index.d.ts"/>
 "use strict";
 var express = require("express");
+var Twitter_1 = require("./Twitter");
 var Twitter = require("twitter-js-client").Twitter;
+var listRepository = new Twitter_1.TwitterApi.Data.ListRepository();
 var app = express();
 var port = 8080;
 var router = express.Router();
@@ -13,12 +15,8 @@ var config = {
 };
 var twitter = new Twitter(config);
 router.get('/lists', function (req, res) {
-    twitter.getCustomApiCall('/lists/list.json', { screen_name: 'netarrow89' }, function (error) {
-        console.log(error);
-        res.status(500).send(error);
-    }, function (data) {
-        res.json(data);
-    });
+    listRepository.GetLists(function (lists) {
+        return res.json(lists); });
 });
 router.get('/members/:listid', function (req, res) {
     twitter.getCustomApiCall('/lists/members.json', { list_id: req.params['listid'] }, function (error) {
