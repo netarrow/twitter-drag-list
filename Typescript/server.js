@@ -15,8 +15,7 @@ var config = {
 };
 var twitter = new Twitter(config);
 router.get('/lists', function (req, res) {
-    listRepository.GetLists(function (lists) {
-        return res.json(lists); });
+    listRepository.GetLists(function (lists) { return res.json(lists); });
 });
 router.get('/members/:listid', function (req, res) {
     twitter.getCustomApiCall('/lists/members.json', { list_id: req.params['listid'] }, function (error) {
@@ -43,3 +42,4 @@ app.use(function (req, res, next) {
 app.use('/api', router);
 app.listen(port);
 console.log('Typed magic happens on port ' + port);
+//# sourceMappingURL=server.js.map

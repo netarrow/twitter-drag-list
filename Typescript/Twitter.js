@@ -45,3 +45,4 @@ var TwitterApi;
         Data.ListRepository = ListRepository;
     })(Data = TwitterApi.Data || (TwitterApi.Data = {}));
 })(TwitterApi = exports.TwitterApi || (exports.TwitterApi = {}));
+//# sourceMappingURL=Twitter.js.map
