@@ -3,7 +3,9 @@
  */
 
 export module TwitterApi {
+
     var Twitter = require("twitter-js-client").Twitter;
+
     var config = {
         "consumerKey": "T2MpIQwPtNPmJEKmiBr4VWgnq",
         "consumerSecret": "Y1KbQFYrpPWv5r7ewy9o9WruaXM2KFgFK4pMiyf9npfbbkclnB",
