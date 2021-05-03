@@ -9,16 +9,16 @@
     var router = express.Router();
 
     var config = {
-        "consumerKey": "T2MpIQwPtNPmJEKmiBr4VWgnq",
-        "consumerSecret": "Y1KbQFYrpPWv5r7ewy9o9WruaXM2KFgFK4pMiyf9npfbbkclnB",
-        "accessToken": "96220584-Ylc763bXWYS8Gk1CTo1LUPwpjasTS8iZdNXXrO4oP",
-        "accessTokenSecret": "A4XVuScITToOxurPT1UmlSTuOvYhY4t11NJIzlm1dquEh",
+        "consumerKey": "",
+        "consumerSecret": "",
+        "accessToken": "",
+        "accessTokenSecret": "",
     }
 
     var twitter = new Twitter(config);
 
     router.get('/lists', function (req, res) {
-        twitter.getCustomApiCall('/lists/list.json', { screen_name: 'netarrow89' },
+        twitter.getCustomApiCall('/lists/list.json', { screen_name: '' },
             function (error) {
                 res.status(500).send(error);
             },
@@ -38,7 +38,7 @@
     });
 
     router.get('/following', function (req, res) {
-        twitter.getCustomApiCall('/friends/list.json', { screen_name: 'netarrow89', count: 200 },
+        twitter.getCustomApiCall('/friends/list.json', { screen_name: '', count: 200 },
             function (error) {
                 res.status(500).send(error);
             },
