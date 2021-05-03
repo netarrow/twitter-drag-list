@@ -1,9 +1,0 @@
-{
-  "globalDependencies": {
-    "node": "registry:env/node#6.0.0+20170102175725"
-  },
-  "dependencies": {
-    "angular": "registry:dt/angular#1.5.0+20170103054634",
-    "express": "registry:dt/express#4.0.0+20161115070701"
-  }
-}
