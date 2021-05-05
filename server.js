@@ -28,6 +28,28 @@
             })
     });
 
+    router.get('/addmember/:userId/tolist/:listId', function (req, res) {
+        twitter.getCustomApiCall('/lists/members/create.json', { screen_name: process.env.screenName, 
+            list_id: req.params['listid'], user_id: req.params['userId']},
+            function (error) {
+                res.status(500).send(error);
+            },
+            function (data) {
+                res.json(data);
+            })
+    });
+
+    router.get('/delmember/:userId/fromlist/:listId', function (req, res) {
+        twitter.getCustomApiCall('lists/members/destroy.json', { screen_name: process.env.screenName, 
+            list_id: req.params['listid'], user_id: req.params['userId']},
+            function (error) {
+                res.status(500).send(error);
+            },
+            function (data) {
+                res.json(data);
+            })
+    });
+
     router.get('/members/:listid', function (req, res) {
         twitter.getCustomApiCall('/lists/members.json', { list_id: req.params['listid']},
             function (error) {
