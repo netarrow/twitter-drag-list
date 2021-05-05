@@ -6,16 +6,37 @@
     <script type="text/javascript" src="node_modules/jquery-mousewheel/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <script>
+     // todo move in controller, just to test behavior
+        function allowDrop(ev) {
+            console.log('allowDrop');
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            console.log('drag ' + ev.target.id);
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            console.log('drop ' + ev.dataTransfer.getData("text"));
+            console.log('todo, call here twitter api to add user in new list, remove in old list')
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+        </script>
+    </script>
 </head>
 <body ng-controller="HomeController as home">
 <div>{{home.error}}</div>
 
     <div class="listContainer">
-        <div ng-repeat="list in home.lists" class="list" ng-attr-id="{{list.id}}">
+        <div ng-repeat="list in home.lists" class="list"  >
             <span class="listTitle">{{list.name}}</span>
             <div id="users">
-                <ul>
-                    <li ng-attr-id="{{user.id}}" ng-repeat="user in list.users">{{user.name}}</li>
+                <ul ng-drop="home.drop(event)" ondragover="allowDrop(event)" ondrop="drop(event)"  ng-attr-id="{{list.id}}">
+                    <li draggable="true" ondragstart="drag(event)" ng-attr-id="{{user.id}}" ng-repeat="user in list.users">{{user.name}}</li>
                 </ul>
             </div>
         </div>
