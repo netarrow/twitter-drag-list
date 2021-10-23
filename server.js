@@ -79,6 +79,8 @@
 
     app.use('/api', router);
 
+    app.use(express.static('.'));
+
     app.listen(port);
     console.log('Magic happens on port ' + port);
 })();
