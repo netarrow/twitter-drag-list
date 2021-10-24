@@ -12,12 +12,13 @@
         function over(ev) {
             ev.stopPropagation();
             ev.preventDefault();
-            event.dataTransfer.dropEffect = 'move'; 
+            event.dataTransfer.dropEffect = 'move';
             console.log('dragover');
         }
 
         function drag(ev) {
             console.log('dragstart ' + ev.target.id);
+            ev.dataTransfer.setData("text", ev.target.it);
             ev.dataTransfer.setData("text", ev.target.id);
         }
 
@@ -37,6 +38,8 @@
             ev.preventDefault();
             ev.stopPropagation();
             var data = ev.dataTransfer.getData("text");
+            console.log('drop')
+            console.log(data)
         }
     </script>
     </script>
@@ -50,7 +53,7 @@
             <span class="listTitle">{{list.name}}</span>
             <div id="users">
                 <ul ondragover="over(event)" ondragenter="enter(event)" ondragleave="leave(event)"
-                    ondragdrop="drop(event)" ng-attr-id="{{list.id}}">
+                    ondrop="drop(event)" ng-attr-id="{{list.id}}">
                     <li draggable="true" ondragstart="drag(event)" ng-attr-id="{{user.id}}"
                         ng-repeat="user in list.users">{{user.name}}</li>
                 </ul>
