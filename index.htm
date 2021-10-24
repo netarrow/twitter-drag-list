@@ -11,6 +11,7 @@
         function allowDrop(ev) {
             console.log('allowDrop');
             ev.preventDefault();
+            ev.stopPropagation();
         }
 
         function drag(ev) {
@@ -20,10 +21,8 @@
 
         function drop(ev) {
             ev.preventDefault();
-            console.log('drop ' + ev.dataTransfer.getData("text"));
-            console.log('todo, call here twitter api to add user in new list, remove in old list')
+            ev.stopPropagation();
             var data = ev.dataTransfer.getData("text");
-            ev.target.appendChild(document.getElementById(data));
         }
         </script>
     </script>
@@ -35,7 +34,7 @@
         <div ng-repeat="list in home.lists" class="list"  >
             <span class="listTitle">{{list.name}}</span>
             <div id="users">
-                <ul ng-drop="home.drop(event)" ondragover="allowDrop(event)" ondrop="drop(event)"  ng-attr-id="{{list.id}}">
+                <ul ondragover="allowDrop(event)" ondrop="drop(event)"  ng-attr-id="{{list.id}}">
                     <li draggable="true" ondragstart="drag(event)" ng-attr-id="{{user.id}}" ng-repeat="user in list.users">{{user.name}}</li>
                 </ul>
             </div>
