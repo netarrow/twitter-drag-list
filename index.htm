@@ -9,19 +9,25 @@
     <script>
      // todo move in controller, just to test behavior
         function allowDrop(ev) {
-            console.log('allowDrop');
-            ev.preventDefault();
             ev.stopPropagation();
+            ev.preventDefault();
+            console.log('dragover');
         }
 
         function drag(ev) {
-            console.log('drag ' + ev.target.id);
+            console.log('dragstart ' + ev.target.id);
             ev.dataTransfer.setData("text", ev.target.id);
         }
 
-        function drop(ev) {
-            ev.preventDefault();
+        function leave(ev) {
             ev.stopPropagation();
+            ev.preventDefault();
+            console.log('leave');
+        }
+
+        function drop(ev) {
+            event.preventDefault();  
+            event.stopPropagation();
             var data = ev.dataTransfer.getData("text");
         }
         </script>
@@ -34,7 +40,7 @@
         <div ng-repeat="list in home.lists" class="list"  >
             <span class="listTitle">{{list.name}}</span>
             <div id="users">
-                <ul ondragover="allowDrop(event)" ondrop="drop(event)"  ng-attr-id="{{list.id}}">
+                <ul ondragover="allowDrop(event)" ondragleave="leave(event)" ondrop="drop(event)" ng-attr-id="{{list.id}}">
                     <li draggable="true" ondragstart="drag(event)" ng-attr-id="{{user.id}}" ng-repeat="user in list.users">{{user.name}}</li>
                 </ul>
             </div>
