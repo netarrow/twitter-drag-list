@@ -17,9 +17,9 @@
         }
 
         function drag(ev) {
-            console.log('dragstart ' + ev.target.id);
-            ev.dataTransfer.setData("text", ev.target.it);
-            ev.dataTransfer.setData("text", ev.target.id);
+            console.log('dragstart on user id ' + ev.target.id);
+            let moved = { user: ev.target.id, list: ev.target.dataset.list }
+            ev.dataTransfer.setData("text", JSON.stringify(moved));
         }
 
         function leave(ev) {
@@ -37,9 +37,8 @@
         function drop(ev) {
             ev.preventDefault();
             ev.stopPropagation();
-            var data = ev.dataTransfer.getData("text");
-            console.log('drop')
-            console.log(data)
+            var data = JSON.parse(ev.dataTransfer.getData("text"));
+            console.log('drop user ' + data.user + ' on list ' + ev.currentTarget.dataset.list + ' from list ' + data.list);
         }
     </script>
     </script>
@@ -53,8 +52,8 @@
             <span class="listTitle">{{list.name}}</span>
             <div id="users">
                 <ul ondragover="over(event)" ondragenter="enter(event)" ondragleave="leave(event)"
-                    ondrop="drop(event)" ng-attr-id="{{list.id}}">
-                    <li draggable="true" ondragstart="drag(event)" ng-attr-id="{{user.id}}"
+                    ondrop="drop(event)" ng-attr-id="{{list.id}}" ng-attr-data-list="{{list.id}}">
+                    <li draggable="true" ondragstart="drag(event)" ng-attr-id="{{user.id}}" ng-attr-data-list="{{list.id}}"
                         ng-repeat="user in list.users">{{user.name}}</li>
                 </ul>
             </div>
